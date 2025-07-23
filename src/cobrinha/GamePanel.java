@@ -51,11 +51,11 @@ public class GamePanel extends JPanel implements  ActionListener{
 	public void draw(Graphics g) {
 		
 		if(running) {
-			for (int i = 0; i<SCREEN_HEIGHT/UNIT_SIZE; i++) {
-				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
-				g.drawLine(0, i*UNIT_SIZE, SCREEN_HEIGHT, i*UNIT_SIZE);
-				
-			}
+//			for (int i = 0; i<SCREEN_HEIGHT/UNIT_SIZE; i++) {
+//				g.drawLine(i*UNIT_SIZE, 0, i*UNIT_SIZE, SCREEN_HEIGHT);
+//				g.drawLine(0, i*UNIT_SIZE, SCREEN_HEIGHT, i*UNIT_SIZE);
+//				
+//			}
 			g.setColor(Color.red);
 			g.fillOval(appleX, appleY, UNIT_SIZE, UNIT_SIZE);
 			
@@ -68,6 +68,10 @@ public class GamePanel extends JPanel implements  ActionListener{
 					g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
 				}
 			}
+			g.setColor(Color.red);
+			g.setFont(new Font("Ink Free", Font.BOLD,40));
+			FontMetrics metrics = getFontMetrics(g.getFont());
+			g.drawString("Pontos"+ applesEaten, (SCREEN_WIDTH - metrics.stringWidth("Pontos"+ applesEaten))/2, g.getFont().getSize()) ;
 			
 		}else {
 			gameOver(g);
@@ -143,11 +147,18 @@ public class GamePanel extends JPanel implements  ActionListener{
 	}
 	
 	public void gameOver(Graphics g) {
+		//pontos
+		g.setColor(Color.red);
+		g.setFont(new Font("Ink Free", Font.BOLD,40));
+		FontMetrics metrics1 = getFontMetrics(g.getFont());
+		g.drawString("Pontos"+ applesEaten, (SCREEN_WIDTH - metrics1.stringWidth("Pontos"+ applesEaten))/2, g.getFont().getSize());
+		
+		//texto gameover
 		g.setColor(Color.red);
 		g.setFont(new Font("Ink Free", Font.BOLD,75));
-		FontMetrics metrics = getFontMetrics(g.getFont());
-		g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
-		;
+		FontMetrics metrics2 = getFontMetrics(g.getFont());
+		g.drawString("Game Over", (SCREEN_WIDTH - metrics2.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
+	
 		
 	}
 	@Override
